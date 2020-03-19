@@ -1,26 +1,33 @@
-import React, { Component } from 'react';
-import { render } from 'react-dom';
-import Hello from './Hello';
-import './style.css';
+import React, { Component } from "react";
+import { render } from "react-dom";
+import Hello from "./Hello";
+import "./index.css";
 
-class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      name: 'React'
-    };
-  }
+const Person = ({ img, name, job, children }) => {
+  const url = `https://randomuser.me/api/portraits/thumb/men/${img}.jpg`;
 
-  render() {
-    return (
-      <div>
-        <Hello name={this.state.name} />
+  return (
+    <article className="person">
+      <img src={url} alt="person " />
+      <h4>{name}</h4>
+      <h4>{job}</h4>
+      {children}
+    </article>
+  );
+};
+
+const PersonList = () => {
+  return (
+    <section className="person-list">
+      <Person img="55" name="Jonh" job="developer" />
+      <Person img="36" name="Pirathi" job="developer">
         <p>
-          Start editing to see some magic happen :)
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. In, nulla.
         </p>
-      </div>
-    );
-  }
-}
+      </Person>
+      <Person img="67" name="Lax" job="paramedicine" />
+    </section>
+  );
+};
 
-render(<App />, document.getElementById('root'));
+render(<PersonList />, document.getElementById("root"));
